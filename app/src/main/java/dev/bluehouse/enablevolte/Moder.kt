@@ -326,7 +326,8 @@ class SubscriptionModer(val subscriptionId: Int) : Moder() {
         get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_WFC_SUPPORTS_WIFI_ONLY_BOOL)
 
     val isVtConfigEnabled: Boolean
-        get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_VT_AVAILABLE_BOOL)
+        get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_VT_AVAILABLE_BOOL) &&
+            this.getBooleanValue(CarrierConfigManager.KEY_SUPPORT_VIDEO_CONFERENCE_CALL_BOOL)
 
     val ssOverUtEnabled: Boolean
         get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_SUPPORTS_SS_OVER_UT_BOOL)

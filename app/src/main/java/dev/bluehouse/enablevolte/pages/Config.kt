@@ -225,9 +225,11 @@ fun Config(navController: NavController, subId: Int) {
             BooleanPropertyView(label = stringResource(R.string.enable_video_calling_vt), toggled = vtEnabled) {
                 vtEnabled = if (vtEnabled) {
                     moder.updateCarrierConfig(CarrierConfigManager.KEY_CARRIER_VT_AVAILABLE_BOOL, false)
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_SUPPORT_VIDEO_CONFERENCE_CALL_BOOL, false)
                     false
                 } else {
                     moder.updateCarrierConfig(CarrierConfigManager.KEY_CARRIER_VT_AVAILABLE_BOOL, true)
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_SUPPORT_VIDEO_CONFERENCE_CALL_BOOL, true)
                     moder.restartIMSRegistration()
                     true
                 }
