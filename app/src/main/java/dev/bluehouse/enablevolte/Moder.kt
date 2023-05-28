@@ -288,7 +288,8 @@ class SubscriptionModer(val subscriptionId: Int) : Moder() {
         }
 
     val isVoWifiConfigEnabled: Boolean
-        get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_WFC_IMS_AVAILABLE_BOOL)
+        get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_WFC_IMS_AVAILABLE_BOOL) &&
+            this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_DEFAULT_WFC_IMS_ENABLED_BOOL)
 
     val isVoWifiWhileRoamingEnabled: Boolean
         get() = this.getBooleanValue(CarrierConfigManager.KEY_CARRIER_DEFAULT_WFC_IMS_ROAMING_ENABLED_BOOL)
