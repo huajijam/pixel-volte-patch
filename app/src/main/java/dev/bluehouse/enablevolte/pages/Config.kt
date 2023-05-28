@@ -61,6 +61,7 @@ fun Config(navController: NavController, subId: Int) {
     var preferUSSDOverIMS by rememberSaveable { mutableStateOf(false) }
     var showVoWifiMode by rememberSaveable { mutableStateOf(false) }
     var showVoWifiRoamingMode by rememberSaveable { mutableStateOf(false) }
+    var useHomeVoWiFiModeForRoaming by rememberSaveable { mutableStateOf(false) }
     var wfcSpnFormatIndex by rememberSaveable { mutableIntStateOf(0) }
     var showVoWifiIcon by rememberSaveable { mutableStateOf(false) }
     var alwaysDataRATIcon by rememberSaveable { mutableStateOf(false) }
@@ -97,6 +98,7 @@ fun Config(navController: NavController, subId: Int) {
         preferUSSDOverIMS = (moder.preferUSSDOverIMS == 1)
         showVoWifiMode = VERSION.SDK_INT >= VERSION_CODES.R && moder.showVoWifiMode
         showVoWifiRoamingMode = VERSION.SDK_INT >= VERSION_CODES.R && moder.showVoWifiRoamingMode
+        useHomeVoWiFiModeForRoaming = moder.useHomeVoWiFiModeForRoaming
         wfcSpnFormatIndex = moder.wfcSpnFormatIndex
         showVoWifiIcon = moder.showVoWifiIcon
         alwaysDataRATIcon = VERSION.SDK_INT >= VERSION_CODES.R && moder.alwaysDataRATIcon
@@ -200,6 +202,16 @@ fun Config(navController: NavController, subId: Int) {
                     false
                 } else {
                     moder.updateCarrierConfig(CarrierConfigManager.KEY_CARRIER_DEFAULT_WFC_IMS_ROAMING_ENABLED_BOOL, true)
+                    moder.restartIMSRegistration()
+                    true
+                }
+            }
+            BooleanPropertyView(label = stringResource(R.string.use_vowifi_home_mode_for_roaming), toggled = useHomeVoWiFiModeForRoaming) {
+                useHomeVoWiFiModeForRoaming = if (useHomeVoWiFiModeForRoaming) {
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_USE_WFC_HOME_NETWORK_MODE_IN_ROAMING_NETWORK_BOOL, false)
+                    false
+                } else {
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_USE_WFC_HOME_NETWORK_MODE_IN_ROAMING_NETWORK_BOOL, true)
                     moder.restartIMSRegistration()
                     true
                 }

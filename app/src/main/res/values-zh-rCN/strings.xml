@@ -20,6 +20,7 @@
     <string name="prefer_ussd_over_ims">使用 IMS 执行 USSD 代码</string>
     <string name="show_vowifi_preference_in_settings">显示 VoWiFi 选项</string>
     <string name="show_vowifi_roaming_preference_in_settings">显示 VoWiFi漫游 选项</string>
+    <string name="use_vowifi_home_mode_for_roaming">漫游时 VoWiFi 使用家庭网络模式</string>
     <string name="wi_fi_calling_carrier_name_format">VoWiFI 网络名称格式</string>
     <string name="show_ims_status_in_sim_status">在 SIM 信息中显示 IMS 状态</string>
     <string name="allow_adding_apns">允许添加接入点APN</string>

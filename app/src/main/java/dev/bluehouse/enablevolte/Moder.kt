@@ -312,6 +312,9 @@ class SubscriptionModer(val subscriptionId: Int) : Moder() {
         @RequiresApi(VERSION_CODES.R)
         get() = this.getBooleanValue(CarrierConfigManager.KEY_EDITABLE_WFC_ROAMING_MODE_BOOL)
 
+    val useHomeVoWiFiModeForRoaming: Boolean
+        get() = this.getBooleanValue(CarrierConfigManager.KEY_USE_WFC_HOME_NETWORK_MODE_IN_ROAMING_NETWORK_BOOL)
+
     val wfcSpnFormatIndex: Int
         get() = this.getIntValue(CarrierConfigManager.KEY_WFC_SPN_FORMAT_IDX_INT)
 
