@@ -58,6 +58,7 @@ fun Config(navController: NavController, subId: Int) {
     var voWiFiEnabledWhileRoaming by rememberSaveable { mutableStateOf(false) }
     var showIMSinSIMInfo by rememberSaveable { mutableStateOf(false) }
     var allowAddingAPNs by rememberSaveable { mutableStateOf(false) }
+    var preferUSSDOverIMS by rememberSaveable { mutableStateOf(false) }
     var showVoWifiMode by rememberSaveable { mutableStateOf(false) }
     var showVoWifiRoamingMode by rememberSaveable { mutableStateOf(false) }
     var wfcSpnFormatIndex by rememberSaveable { mutableIntStateOf(0) }
@@ -93,6 +94,7 @@ fun Config(navController: NavController, subId: Int) {
         voWiFiEnabledWhileRoaming = moder.isVoWifiWhileRoamingEnabled
         showIMSinSIMInfo = VERSION.SDK_INT >= VERSION_CODES.R && moder.showIMSinSIMInfo
         allowAddingAPNs = moder.allowAddingAPNs
+        preferUSSDOverIMS = (moder.preferUSSDOverIMS == 1)
         showVoWifiMode = VERSION.SDK_INT >= VERSION_CODES.R && moder.showVoWifiMode
         showVoWifiRoamingMode = VERSION.SDK_INT >= VERSION_CODES.R && moder.showVoWifiRoamingMode
         wfcSpnFormatIndex = moder.wfcSpnFormatIndex
@@ -198,6 +200,16 @@ fun Config(navController: NavController, subId: Int) {
                     false
                 } else {
                     moder.updateCarrierConfig(CarrierConfigManager.KEY_CARRIER_DEFAULT_WFC_IMS_ROAMING_ENABLED_BOOL, true)
+                    moder.restartIMSRegistration()
+                    true
+                }
+            }
+            BooleanPropertyView(label = stringResource(R.string.prefer_ussd_over_ims), toggled = preferUSSDOverIMS) {
+                preferUSSDOverIMS = if (preferUSSDOverIMS) {
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_CARRIER_USSD_METHOD_INT, 0)
+                    false
+                } else {
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_CARRIER_USSD_METHOD_INT, 1)
                     moder.restartIMSRegistration()
                     true
                 }

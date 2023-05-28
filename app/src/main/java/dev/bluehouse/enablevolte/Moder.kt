@@ -301,6 +301,9 @@ class SubscriptionModer(val subscriptionId: Int) : Moder() {
     val allowAddingAPNs: Boolean
         get() = this.getBooleanValue(CarrierConfigManager.KEY_ALLOW_ADDING_APNS_BOOL)
 
+    val preferUSSDOverIMS: Int
+        get() = this.getIntValue(CarrierConfigManager.KEY_CARRIER_USSD_METHOD_INT)
+
     val showVoWifiMode: Boolean
         @RequiresApi(VERSION_CODES.R)
         get() = this.getBooleanValue(CarrierConfigManager.KEY_EDITABLE_WFC_MODE_BOOL)
