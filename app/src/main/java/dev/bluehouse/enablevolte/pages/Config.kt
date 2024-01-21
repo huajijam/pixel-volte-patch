@@ -63,6 +63,7 @@ fun Config(navController: NavController, subId: Int) {
     var showVoWifiRoamingMode by rememberSaveable { mutableStateOf(false) }
     var useHomeVoWiFiModeForRoaming by rememberSaveable { mutableStateOf(false) }
     var wfcSpnFormatIndex by rememberSaveable { mutableIntStateOf(0) }
+    var useRootLocaleInVoWifiName by rememberSaveable { mutableStateOf(false) }
     var showVoWifiIcon by rememberSaveable { mutableStateOf(false) }
     var alwaysDataRATIcon by rememberSaveable { mutableStateOf(false) }
     var supportWfcWifiOnly by rememberSaveable { mutableStateOf(false) }
@@ -100,6 +101,7 @@ fun Config(navController: NavController, subId: Int) {
         showVoWifiRoamingMode = VERSION.SDK_INT >= VERSION_CODES.R && moder.showVoWifiRoamingMode
         useHomeVoWiFiModeForRoaming = moder.useHomeVoWiFiModeForRoaming
         wfcSpnFormatIndex = moder.wfcSpnFormatIndex
+        useRootLocaleInVoWifiName = moder.useRootLocaleInVoWifiName
         showVoWifiIcon = moder.showVoWifiIcon
         alwaysDataRATIcon = VERSION.SDK_INT >= VERSION_CODES.R && moder.alwaysDataRATIcon
         supportWfcWifiOnly = moder.supportWfcWifiOnly
@@ -329,6 +331,16 @@ fun Config(navController: NavController, subId: Int) {
             ) {
                 moder.updateCarrierConfig(CarrierConfigManager.KEY_WFC_SPN_FORMAT_IDX_INT, it)
                 wfcSpnFormatIndex = it
+            }
+            BooleanPropertyView(label = stringResource(R.string.use_root_locale_in_vowifi_name), toggled = useRootLocaleInVoWifiName) {
+                useRootLocaleInVoWifiName = if (useRootLocaleInVoWifiName) {
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_WFC_SPN_USE_ROOT_LOCALE, false)
+                    false
+                } else {
+                    moder.updateCarrierConfig(CarrierConfigManager.KEY_WFC_SPN_USE_ROOT_LOCALE, true)
+                    moder.restartIMSRegistration()
+                    true
+                }
             }
             BooleanPropertyView(label = stringResource(R.string.show_wifi_only_for_vowifi), toggled = supportWfcWifiOnly) {
                 supportWfcWifiOnly = if (supportWfcWifiOnly) {

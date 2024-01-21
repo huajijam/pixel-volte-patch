@@ -321,6 +321,9 @@ class SubscriptionModer(val subscriptionId: Int) : Moder() {
     val carrierName: String
         get() = this.loadCachedInterface { telephony }.getSubscriptionCarrierName(this.subscriptionId)
 
+    val useRootLocaleInVoWifiName: Boolean
+        get() = this.getBooleanValue(CarrierConfigManager.KEY_WFC_SPN_USE_ROOT_LOCALE)
+
     val showVoWifiIcon: Boolean
         get() = this.getBooleanValue(CarrierConfigManager.KEY_SHOW_WIFI_CALLING_ICON_IN_STATUS_BAR_BOOL)
 

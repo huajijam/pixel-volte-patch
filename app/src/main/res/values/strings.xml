@@ -22,6 +22,7 @@
     <string name="use_vowifi_home_mode_for_roaming">Use home VoWiFi mode for roaming</string>
     <string name="show_ims_status_in_sim_status">Show IMS Status in SIM Info</string>
     <string name="wi_fi_calling_carrier_name_format">Wi-Fi Calling network name format</string>
+    <string name="use_root_locale_in_vowifi_name">Use Root Locale in VoWiFi Network name</string>
     <string name="show_wifi_only_for_vowifi">Show \"WiFi only\" mode for VoWiFi</string>
     <string name="enable_video_calling_vt">Enable Video Calling (VT)</string>
     <string name="allow_adding_apns">Allow adding APNs</string>

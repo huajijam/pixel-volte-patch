@@ -22,6 +22,7 @@
     <string name="show_vowifi_roaming_preference_in_settings">显示 VoWiFi漫游 选项</string>
     <string name="use_vowifi_home_mode_for_roaming">漫游时 VoWiFi 使用家庭网络模式</string>
     <string name="wi_fi_calling_carrier_name_format">VoWiFI 网络名称格式</string>
+    <string name="use_root_locale_in_vowifi_name">禁用 VoWiFi 网络名本地化</string>
     <string name="show_ims_status_in_sim_status">在 SIM 信息中显示 IMS 状态</string>
     <string name="allow_adding_apns">允许添加接入点APN</string>
     <string name="show_wifi_only_for_vowifi">VoWiFi 显示 \"仅WiFi\" 模式</string>
